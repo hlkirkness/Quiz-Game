@@ -1,20 +1,61 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const timeLeftDisplay = document.querySelector('#TimeLeftSpan')
-    const startBtn = document.querySelector ('#startBtn')
-    let timeLeft = 50
+<!DOCTYPE html>
+<html lang="en-us">
 
-    function countDown(){
-        setInterval(function(){
-            if (timeLeft <=0) {
-                clearInterval(timeLeft=0)
-            }
-            timeLeftDisplay.innerHTML = timeLeft
-            timeLeft -= 1
-        }, 1000)
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>True or False Game</title>
+  <style>
+    .hide {
+      display: none;
     }
-    startBtn.addEventListener('click', countDown)
-})
-var startBtn = document.querySelector("#startBtn")
+  </style>
+</head>
+
+
+
+<body>
+
+  <div class="highscores">
+    <a href="./highscore.html">View highscore</a>
+
+  </div>
+
+
+
+ Time Remaining: <spanz id="TimeLeftSpan"></spanz>
+  <div id="intro">
+    <h1>Quiz game</h1>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi iste neque odit ducimus molestiae deleniti.
+    Perferendis expedita rem quam quidem possimus quibusdam, dicta dignissimos consequatur error placeat facilis maiores
+    repellendus.
+    <button id="startBtn">start</button>
+  </div>
+
+  <div id="questions" class="hide">
+    <h1 id="title"></h1>
+     <ul>
+       <li>
+         <button id="choice1"></button>
+         <button id="choice2"></button>
+         <button id="choice3"></button>
+         <button id="choice4"></button>
+       </li>
+     </ul>
+  </div>
+
+
+ <div id="initialDiv" class="hide"> 
+   <input type="text" id="initial">
+   <button id="submit">Submit</button>
+ </div>
+
+
+  <!-- <script src="./assets/js/script.js"></script> -->
+
+  <script>
+    var startBtn = document.querySelector("#startBtn")
     var questionsDiv = document.querySelector("#questions")
     var introDiv = document.querySelector("#intro")
     var TimeLeftSpan= document.querySelector("#TimeLeftSpan")
@@ -24,36 +65,24 @@ var startBtn = document.querySelector("#startBtn")
   var choice2= document.querySelector("#choice2")
   var choice3= document.querySelector("#choice3")
   var choice4= document.querySelector("#choice4")
-  var questions = [
-    {
-        q: 'Commonly used data types DO NOT include',
-        c: ['1. Strings','2. Booleans','3. Alerts','4. Numbers'],
-        a: 3
-    },
-    {
-        q: 'The condition in an if/else statement is enclosed with _____',
-        c: ['1. Quotes','2. Curly Brackets','3. Parentheses','4. Square Brackets'],
-        a: 2
-    },
-    {
-        q: 'Arrays in JavaScript can be used to store _____',
-        c: ['1. Numbers and Strings','2. Other Arrays','3. Booleans','4. All of the Above'],
-        a: 3
-    },
-    {
-        q: 'String values must be enclosed within _____ when being assigned to variables.',
-        c: ['1. Commas','2. Curly Brackets','3. Quotes','4. Parentheses'],
-        a: 2
-    },
-    {
-        q: 'A very useful tool used during development and debugging for printing content to the debugger is:',
-        c: ['1. JavaScript','2. Terminal/Bash','3. For Loops','4. console.log'],
-        a: 4
-    },
-];
-    var timeRemaining =  questions.length *10
+    var questions = [
+      { 
+        q: 'what is color of the sky.', 
+        c: ['green','blue','orange','black'],
+        a: 1 
+      
+      },
+      { 
+        q: 'what is color of water.', 
+        c: ['green','orange','black','blue'],
+        a: 3 
+      
+      }
+      
+    ];
+    var timeRemaining =  questions.length *15 
 
-    var questionIndex = 0
+    var questionIndex=0
 
     var pidClock
 
@@ -104,3 +133,8 @@ var startBtn = document.querySelector("#startBtn")
 
 
     }
+
+  </script>
+</body>
+
+</html>
