@@ -11,11 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
   var choice2 = document.querySelector("#choice2")
   var choice3 = document.querySelector("#choice3")
   var choice4 = document.querySelector("#choice4")
+  var submit = document.querySelector("#submitBtn")
+  var initialInput = document.querySelector("#initial-input")
 
   const startBtn = document.querySelector('#startBtn')
   let timeLeft = 50
 
-  var questionIndex=0
+  var questionIndex = 0
 
   // array of question
   var questions = [
@@ -46,6 +48,31 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   ];
 
+  choice1.addEventListener("click", function () {
+    onChoiceClicked(0)
+  })
+  choice2.addEventListener("click", function () {
+    onChoiceClicked(1)
+  })
+  choice3.addEventListener("click", function () {
+    onChoiceClicked(2)
+  })
+  choice4.addEventListener("click", function () {
+    onChoiceClicked(3)
+  })
+
+  //window.localStorage.removeItem("highscores")
+  var highscores = JSON.parse(window.localStorage.getItem("highscores"))
+  if (highscores == null) {
+    highscores = new Array()
+  }
+
+  submitBtn.addEventListener("click", function () {
+    highscores.push([initialInput.value, timeLeft])
+    window.localStorage.setItem("highscores", JSON.stringify(highscores))
+    window.location.href = "./highscores.html"
+  })
+
   // functions
   function startQuiz() {
 
@@ -71,33 +98,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   startBtn.addEventListener('click', startQuiz)
 
-  function loadQuestion(){
-        
-    title.textContent=questions[questionIndex].q
-    choice1.textContent=questions[questionIndex].c[0]
-    choice2.textContent=questions[questionIndex].c[1]
-    choice3.textContent=questions[questionIndex].c[2]
-    choice4.textContent=questions[questionIndex].c[3]
-
-
-}
-
-choice1.addEventListener("click", function(){
- onChoiceClicked(0)
-})
-choice2.addEventListener("click", function(){
- onChoiceClicked(1)
- })
- choice3.addEventListener("click", function(){
-   onChoiceClicked(2)
- })
- choice4.addEventListener("click", function(){
-   onChoiceClicked(3)
- })
+  function loadQuestion() {
+    title.textContent = questions[questionIndex].q
+    choice1.textContent = questions[questionIndex].c[0]
+    choice2.textContent = questions[questionIndex].c[1]
+    choice3.textContent = questions[questionIndex].c[2]
+    choice4.textContent = questions[questionIndex].c[3]
+  }
 
   function onChoiceClicked(choiceIndex) {
     if (choiceIndex != questions[questionIndex].a) {
-        (timeLeft-=10)
+      (timeLeft -= 10)
     }
     if (questionIndex === questions.length - 1) {
       goToResults()
