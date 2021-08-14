@@ -1,3 +1,7 @@
 #questions {
-    display: none
+    display: none;
+}
+
+#results-screen {
+    display: none;
 }
